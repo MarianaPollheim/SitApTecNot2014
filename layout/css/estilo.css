@@ -1,0 +1,98 @@
+/* 
+    Created on : 21/10/2014, 20:28:35
+    Author     : Aluno
+*/
+
+body{
+    background-color: black;
+    color: white;
+}
+
+@media screen and (orientation: portrait){
+    /*Retrato - Vertical*/
+    .paisagem{display: none;}
+    .retrato{display: block;}
+}
+
+@media screen and (orientation: landscape){
+    /*Paisagem - Horizontal*/
+    .paisagem{display: block;}
+    .retrato{display: none;}
+}
+
+@media screen and (min-width: 1280px){
+    /*Largura mínima de 1280 pixels*/
+    section{
+        display: block;
+        margin: 0 auto;/*Centralização*/
+        width: 1230px;
+        padding-left: 50px;
+        /*Borda só para debug*/
+        border: 2px white solid;
+    }
+    figure{
+        width: 390px;
+        height: 300px;
+        float: left;
+        border: 2px white solid;
+        margin: 5px;
+    }    
+}
+@media screen and (min-width: 800px) and (max-width: 1279px){
+    /*Largura mínima de 800 pixels*/
+    section{
+        display: block;
+        margin: 0 auto;/*Centralização*/
+        width: 800px;
+        padding-left: 50px;
+        /*Borda só para debug*/
+        border: 2px chartreuse dashed;
+    }
+    figure{
+        width: 350px;
+        height: 280px;
+        float: left;
+        border: 2px chartreuse dashed;
+        margin: 5px;
+    }    
+}
+@media screen and (max-width: 799px){
+   /*Largura mínima de 640 pixels*/
+    section{
+        display: block;
+        margin: 0 auto;/*Centralização*/
+        width: 640px;
+        padding-left: 50px;
+        /*Borda só para debug*/
+        border: 2px yellow dotted;
+    }
+    figure{
+        width: 600px;
+        height: auto;
+        float: left;
+        border: 2px yellow dotted;
+        margin: 5px;
+    }     
+}
+
+img{
+    /*Responsivo*/
+        width: 90%; /*Refere-se à figure*/
+        height: 90%; 
+        display: block;
+        margin: 5% auto;/*Centralização*/
+    }
+    figcaption{
+        background-color: rgba(240,240,240,0.4);
+        height: 30px;
+        position: relative;
+        bottom: 50px;
+        text-align: center;
+        width: 90%;
+        margin:0 auto;
+    }
+
+.fim {
+    clear: both;/*Limpar a flutuação*/
+}
+
