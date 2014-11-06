@@ -6,16 +6,16 @@
     <link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/estilo.css"/>
 </head>
 <body>
-	<?php echo form_open('pessoas/atualizar', 'id="form-pessoas"'); ?>
+	<?php echo form_open('usuarios/atualizar', 'id="form-usuarios"'); ?>
  
-	<input type="hidden" name="id" value="<?php echo $dados_pessoa[0]->id; ?>"/>
+	<input type="hidden" name="idusuario" value="<?php echo $dados_usuario[0]->idusuario; ?>"/>
  
 	<label for="nome">Nome:</label><br/>
-	<input type="text" name="nome" value="<?php echo $dados_pessoa[0]->nome; ?>"/>
+	<input type="text" name="nome" value="<?php echo $dados_usuario[0]->nome; ?>"/>
 	<div class="error"><?php echo form_error('nome'); ?></div>
  
 	<label for="email">Email:</label><br/>
-	<input type="text" name="email" value="<?php echo $dados_pessoa[0]->email; ?>"/>
+	<input type="text" name="email" value="<?php echo $dados_usuario[0]->email; ?>"/>
 	<div class="error"><?php echo form_error('email'); ?></div>
  
 	<input type="submit" name="atualizar" value="Atualizar" />

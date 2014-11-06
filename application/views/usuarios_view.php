@@ -6,7 +6,7 @@
     <link type="text/css" rel="stylesheet" href=" <?php echo base_url('assets/css/estilo.css'); ?>"/>
 </head>
 <body>
-   <?php echo form_open('pessoas/inserir', 'id="form-pessoas"'); ?>
+   <?php echo form_open('usuarios/inserir', 'id="form-usuarios"'); ?>
  
     <label for="nome">Nome:</label><br/>
     <input type="text" name="nome" value="<?php echo set_value('nome'); ?>"/>
@@ -18,15 +18,15 @@
  
     <?php echo form_close(); ?>
     <!-- Lista as Pessoas Cadastradas -->
-<div id="grid-pessoas">
+<div id="grid-usuarios">
     <ul>
-	<?php foreach($pessoas as $pessoa): ?>
+	<?php foreach($usuarios as $usuario): ?>
 	<li>
-	    <a title="Deletar" href="<?php echo base_url() . 'pessoas/deletar/' . $pessoa->id; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"><img src="<?php echo base_url('assets/images/lixo.png');?>" /></a>
+	    <a title="Deletar" href="<?php echo base_url() . 'usuarios/deletar/' . $usuario->idusuario; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"><img src="<?php echo base_url('assets/images/lixo.png');?>" /></a>
 	    <span> - </span>
-	    <a title="Editar" href="<?php echo base_url() . 'pessoas/editar/' . $pessoa->id; ?>"><?php echo $pessoa->nome; ?></a>
+	    <a title="Editar" href="<?php echo base_url() . 'usuarios/editar/' . $usuario->idusuario; ?>"><?php echo $usuario->nome; ?></a>
 	    <span> - </span>
-	    <span><?php echo $pessoa->email; ?></span>
+	    <span><?php echo $usuario->email; ?></span>
 	</li>
 	<?php endforeach ?>
     </ul>
