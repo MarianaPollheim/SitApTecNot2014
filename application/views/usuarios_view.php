@@ -24,9 +24,32 @@
 	<li>
 	    <a title="Deletar" href="<?php echo base_url() . 'usuarios/deletar/' . $usuario->idusuario; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"><img src="<?php echo base_url('assets/images/lixo.png');?>" /></a>
 	    <span> - </span>
-	    <a title="Editar" href="<?php echo base_url() . 'usuarios/editar/' . $usuario->idusuario; ?>"><?php echo $usuario->nome; ?></a>
+	    <a title="Editar" href="<?php echo base_url() . 'usuarios/editar/' . $usuario->idusuario; ?>">
+                    <?php echo $usuario->nome; ?></a>
 	    <span> - </span>
 	    <span><?php echo $usuario->email; ?></span>
+	    <span> - </span>
+	    <span><?php echo $usuario->dtNascimento; ?></span>
+	    <span> - </span>
+	    <span><?php echo $usuario->cidade; ?></span>
+	    <span> - </span>
+	    <span><?php echo $usuario->estado; ?></span>
+	    <span> - </span>
+	    <span><?php echo $usuario->bairro; ?></span>
+	    <span> - </span>
+	    <span><?php echo $usuario->endereco; ?></span>
+	    <span> - </span>
+	    <span><?php echo $usuario->cep; ?></span>
+	    <span> - </span>
+	    <span><?php echo $usuario->telefone; ?></span>
+	    <span> - </span>
+	    <span><?php echo $usuario->celular; ?></span>
+	    <span> - </span>
+            <span><img src="<?php echo base_url("assets/images/{$usuario->foto}");?>"</span>
+	    
+            
+            
+            
 	</li>
 	<?php endforeach ?>
     </ul>
