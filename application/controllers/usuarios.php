@@ -8,6 +8,8 @@ class Usuarios extends CI_Controller {
     function __construct() {
         parent::__construct();
          $this->load->model('usuarios_model');
+         //vams definir o timezone - Fuso Horário
+         date_default_timezone_set('America/Sao_Paulo');
     }
 
     function index() {
@@ -32,6 +34,18 @@ class Usuarios extends CI_Controller {
 	/* Define as regras para validação */
 	$this->form_validation->set_rules('nome', 'Nome', 'required|max_length[40]');
 	$this->form_validation->set_rules('email', 'E-mail', 'trim|required|valid_email|max_length[100]');
+        
+	/**$this->form_validation->set_rules('senha', 'Senha', 'trim|required|max_length[100]');
+	$this->form_validation->set_rules('dtnascimento', 'Nascimento', 'trim|valid_email|max_length[100]');
+	$this->form_validation->set_rules('foto', 'Foto', 'trim|required|max_length[100]');
+	$this->form_validation->set_rules('cidade', 'Cidade', 'trim|required|max_length[100]');
+	$this->form_validation->set_rules('estado', 'Estado', 'trim|required|max_length[100]');
+	$this->form_validation->set_rules('bairro', 'Bairro', 'trim|required|max_length[100]');
+	$this->form_validation->set_rules('endereco', 'Endereco', 'trim|required|max_length[100]');
+	$this->form_validation->set_rules('cep', 'CEP', 'trim|required|max_length[100]');
+	$this->form_validation->set_rules('telefone', 'Telefone', 'trim|required|max_length[100]');
+	$this->form_validation->set_rules('celular', 'Celular', 'trim|required|max_length[100]');**/
+        
  
 	/* Executa a validação e caso houver erro... */
 	if ($this->form_validation->run() === FALSE) {
@@ -42,6 +56,23 @@ class Usuarios extends CI_Controller {
 		/* Recebe os dados do formulário (visão) */
 		$data['nome'] = $this->input->post('nome');
 		$data['email'] = $this->input->post('email');
+                
+                $data['senha'] = $this->input->post('senha');
+                $data['dtnascimento'] = $this->input->post('dtnascimento');
+                $data['foto'] = $this->input->post('foto');
+                $data['cidade'] = $this->input->post('cidade');
+                $data['estado'] = $this->input->post('estado');
+                $data['bairro'] = $this->input->post('bairro');
+                $data['endereco'] = $this->input->post('endereco');
+                $data['cep'] = $this->input->post('cep');
+                $data['telefone'] = $this->input->post('telefone');
+                $data['celular'] = $this->input->post('celular');
+                
+                //Datas
+                $data['dtcriacao']= date('Y-m-d H:i:s');
+              
+                $data['dtnascimento']=$this->converterDataParaMySql($data['dtnascimento']);
+                
 		/* Chama a função inserir do modelo */
 		if ($this->usuarios_model->inserir($data)) {
 			redirect('usuarios');
@@ -60,6 +91,12 @@ class Usuarios extends CI_Controller {
 	/* Busca os dados da usuario que será editada (id) */
 	$data['dados_usuario'] = $this->usuarios_model->editar($id);
  
+         // Convertendo a data para o padrao brasileiro
+       
+        $data['dados_usuario'][0]->dtNascimento = $this->converterDataParaPadraoBrasileiro( $data['dados_usuario'][0]->dtNascimento );
+       // echo $dtNascimento; die();
+        
+        
  	/* Carrega a página de edição com os dados da pessoa */
 	$this->load->view('usuarios_edit', $data);
 }
@@ -86,6 +123,10 @@ function atualizar() {
 			'rules' => 'trim|required|valid_email|max_length[100]'
 		)
 	);
+        
+        
+        
+        
 	$this->form_validation->set_rules($validations);
 	
 	/* Executa a validação... */
@@ -98,8 +139,22 @@ function atualizar() {
 		$data['nome'] = ucwords($this->input->post('nome'));
 		$data['email'] = strtolower($this->input->post('email'));
  
- 		
+ 		$data['senha'] = $this->input->post('senha');
+                $data['dtnascimento'] = $this->input->post('dtnascimento');
+                $data['foto'] = $this->input->post('foto');
+                $data['cidade'] = $this->input->post('cidade');
+                $data['estado'] = $this->input->post('estado');
+                $data['bairro'] = $this->input->post('bairro');
+                $data['endereco'] = $this->input->post('endereco');
+                $data['cep'] = $this->input->post('cep');
+                $data['telefone'] = $this->input->post('telefone');
+                $data['celular'] = $this->input->post('celular');
  
+                
+                $data['dtAtualizacao']=date('Y-m-d H:i:s');
+                
+                $data['dtnascimento']=$this->converterDataParaMySql($data['dtnascimento']);
+                
 		/* Executa a função atualizar do modelo passando como parâmetro os dados obtidos do formulário */
 		if ($this->usuarios_model->atualizar($data)) {
 			/* Caso sucesso ao atualizar, recarrega a página principal */
@@ -124,6 +179,27 @@ function deletar($idusuario) {
 		log_message('error', 'Erro ao deletar a pessoa.');
 	}
 }
+/**
+ * @param date$databrasileira
+ * @return date
+ */
+
+Private function converterDataParaMySql($databrasileira){
+    $data = explode('/', $databrasileira);
+    $data = array_reverse($data);
+    $dataMySQL = implode('-', $data);
+    return $dataMySQL;
+}
+
+
+    private function converterDataParaPadraoBrasileiro($dataMySQL){
+           $data = explode('-', $dataMySQL);
+    $data = array_reverse($data);
+    $databrasileira = implode('/', $data);
+    return $databrasileira;    
+
+    }
+
        
     public function info() {
         phpinfo();
