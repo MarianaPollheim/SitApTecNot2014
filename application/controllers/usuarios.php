@@ -12,7 +12,7 @@ class Usuarios extends CI_Controller {
          date_default_timezone_set('America/Sao_Paulo');
     }
 
-    function index($atalho = null) {
+    function index() {
         $data['titulo'] = "CRUD com CodeIgniter | Cadastro de Usuários";
         /**
          * Lista todos os registros da tabela usuarios
