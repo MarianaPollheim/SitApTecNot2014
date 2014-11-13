@@ -10,7 +10,8 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-<link type="text/css" rel="stylesheet" href=" <?php echo base_url('assets/css/estilo.css'); ?>"/>
+
+        <!--<link type="text/css" rel="stylesheet" href=" <?php echo base_url('assets/css/estilo.css'); ?>"/> -->
 
  <!--[if lte IE 8]><script src="<?php echo base_url('assets/css/ie/html5shiv.js'); ?>"></script><![endif]-->
         <script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
