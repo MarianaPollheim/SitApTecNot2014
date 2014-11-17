@@ -1,9 +1,7 @@
-
-
 <!-- Main -->
 <div id="main">
 
-    <!-- Inicio -->
+    <!-- Intro -->
     <section id="top" class="one dark cover">
         <div class="container">
 
@@ -36,7 +34,7 @@
 
             <div class="row">
                 <div class="4u">
-                    <article class="item">  
+                    <article class="item">
                         <a href="#" class="image fit"><img src="<?php echo base_url('assets/images/pic02.jpg'); ?>" alt="" /></a>
                         <header>
                             <h3>Ipsum Feugiat</h3>
@@ -46,7 +44,7 @@
                         <a href="#" class="image fit"><img src="<?php echo base_url('assets/images/pic03.jpg'); ?>" alt="" /></a>
                         <header>
                             <h3>Rhoncus Semper</h3>
-                        </header>
+                        </header>                        
                     </article>
                 </div>
                 <div class="4u">
@@ -56,7 +54,7 @@
                             <h3>Magna Nullam</h3>
                         </header>
                     </article>
-                    <article class="item">   
+                    <article class="item">
                         <a href="#" class="image fit"><img src="<?php echo base_url('assets/images/pic05.jpg'); ?>" alt="" /></a>
                         <header>
                             <h3>Natoque Vitae</h3>
@@ -81,7 +79,6 @@
 
         </div>
     </section>
-
     <!-- Contact -->
     <section id="contact" class="four">
         <div class="container">
@@ -115,7 +112,7 @@
         </div>
     </section>
     <!-- Cadastro -->
-    <section id="cadastro" class="five">
+    <section id="cadastro" class="four">
         <div class="container">
 
             <header>
@@ -125,69 +122,113 @@
             <?php echo form_open('usuarios/inserir', 'id="form-usuarios"'); ?>
 
             <div class="row half">
-                    <div class="12u"><input type="text" name="name" placeholder="Nome" /></div>
-                    <div class="12u"><input type="text" name="email" placeholder="Email" /></div>
-                    
-                    <div class="12u"><input type="password" name="senha" placeholder="Senha" /></div>
-                    <div class="12u"><input type="text" name="dtnascimento" placeholder="Data Nascimento" /></div>
-                    <div class="12u"><input type="text" name="foto" placeholder="Foto" /></div>
-                    <div class="6u"><input type="text" name="cidade" placeholder="Cidade" /></div>
-                    <div class="6u"><input type="text" name="estado" placeholder="Estado" /></div>
-                    <div class="12u"><input type="text" name="bairro" placeholder="Bairro" /></div>
-                    <div class="12u"><input type="text" name="endereco" placeholder="Endereço" /></div>
-                    <div class="12u"><input type="text" name="cep" placeholder="CEP" /></div>
-                    <div class="6u"><input type="text" name="telefone" placeholder="Telefone" /></div>
-                    <div class="6u"><input type="text" name="celular" placeholder="Celular" /></div>
+                <div class="6u"><input type="text" name="nome" placeholder="Nome"/>
+                    <div class="error"><?php echo form_error('nome'); ?></div></div>
+
+                <div class="6u"><input type="text" name="email" placeholder="E-mail"/>
+                    <div class="error"><?php echo form_error('email'); ?></div></div>
+            </div>
+
+            <div class="row half">
+                <div class="6u"><input type="password" name="senha" placeholder="Senha"/>
+                    <div class="error"><?php echo form_error('senha'); ?></div></div>
+
+                <div class="6u"><input type="text" name="dtnascimento" placeholder="Data de Nascimento"/>
+                    <div class="error"><?php echo form_error('dtnascimento'); ?></div></div>
+            </div>
+
+
+            <div class="row half">
+                <div class="12u">
+                    <input type="text" name="foto" placeholder="Foto"/>
+                    <div class="error"><?php echo form_error('foto'); ?></div>
                 </div>
-            
-    
+            </div>
 
 
-           
+            <div class="row half">
+                <div class="6u"><input type="text" name="cidade" placeholder="Cidade"/>
+                    <div class="error"><?php echo form_error('cidade'); ?></div> </div>
 
-            
+                <div class="6u"> <input type="text" name="estado" placeholder="Estado"/>
+                    <div class="error"><?php echo form_error('estado'); ?></div></div>
+            </div>
 
 
-            <input type="submit" name="cadastrar" value="Cadastrar" />
+            <div class="row half">
+                <div class="12u">
+                    <input type="text" name="endereco" placeholder="Endereço"/>
+                    <div class="error"><?php echo form_error('endereco'); ?></div>
+                </div>
+            </div>
+
+
+            <div class="row half">
+                <div class="6u">  <input type="text" name="bairro" placeholder="Bairro"/>
+                    <div class="error"><?php echo form_error('bairro'); ?></div></div>
+
+                <div class="6u">  <input type="text" name="cep" placeholder="CEP"/>
+                    <div class="error"><?php echo form_error('cep'); ?></div></div>
+            </div>
+
+            <div class="row half">
+                <div class="6u"> <input type="text" name="telefone" placeholder="Telefone"/>
+                    <div class="error"><?php echo form_error('telefone'); ?></div> </div>
+
+                <div class="6u"> <input type="text" name="celular" placeholder="Celular"/>
+                    <div class="error"><?php echo form_error('celular'); ?></div> </div>
+            </div>
+
+
+            <div class="row">
+                    <div class="12u">
+                        <input type="submit" name="cadastrar" value="Cadastrar"/>
+                    </div>
+                </div>
+
 
             <?php echo form_close(); ?>
+
             <!-- Lista as Pessoas Cadastradas -->
-            <div id="grid-usuarios">
-                <ul>
+            <br />
+            <div class="row">
                     <?php foreach ($usuarios as $usuario): ?>
-                        <li>
-                            <a title="Deletar" href="<?php echo base_url() . 'usuarios/deletar/' . $usuario->idusuario; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"><img src="<?php echo base_url('assets/images/lixo.png'); ?>" /></a>
-                            <span> - </span>
-                            <a title="Editar" href="<?php echo base_url() . 'usuarios/editar/' . $usuario->idusuario; ?>">
-                                <?php echo $usuario->nome; ?></a>
-                            <span> - </span>
-                            <span><?php echo $usuario->email; ?></span>
-                            <span> - </span>
-                            <span><?php echo $usuario->dtNascimento; ?></span>
-                            <span> - </span>
-                            <span><?php echo $usuario->cidade; ?></span>
-                            <span> - </span>
-                            <span><?php echo $usuario->estado; ?></span>
-                            <span> - </span>
-                            <span><?php echo $usuario->bairro; ?></span>
-                            <span> - </span>
-                            <span><?php echo $usuario->endereco; ?></span>
-                            <span> - </span>
-                            <span><?php echo $usuario->cep; ?></span>
-                            <span> - </span>
-                            <span><?php echo $usuario->telefone; ?></span>
-                            <span> - </span>
-                            <span><?php echo $usuario->celular; ?></span>
-                            <span> - </span>
-                            <span><img src="<?php echo base_url("assets/images/{$usuario->foto}"); ?>"</span>
-
-
-
-
-                        </li>
+                
+                    <article class="item 4u">
+                        <a href="#" class="image fit">
+                        <img src="<?php echo base_url("assets/images/{$usuario->foto}"); ?>" />
+                        </a>
+                        <header>
+                            <h3><a title="Editar" href="<?php echo base_url() . 'usuarios/editar/' . $usuario->idusuario; ?>"><?php echo $usuario->nome; ?></a></h3>
+                        </header>
+                        <!--
+                            <p><?php echo $usuario->email; ?></p>
+                           
+                            <p><?php echo $usuario->dtNascimento; ?></p>
+                           
+                            <p><?php echo $usuario->senha; ?></p>
+                           
+                            <p><?php echo $usuario->endereco; ?></p>
+                           
+                            <p><?php echo $usuario->cidade; ?></p>
+                           
+                            <p><?php echo $usuario->estado; ?></p>
+                          
+                            <p><?php echo $usuario->bairro; ?></p>
+                           
+                            <p><?php echo $usuario->cep; ?></p>
+                           
+                            <p><?php echo $usuario->telefone; ?></p>
+                            
+                            <p><?php echo $usuario->celular; ?></p>
+                        -->
+                    </article>
                     <?php endforeach ?>
-                </ul>
-            </div>
+                </div>
+           
+            <!-- Fim Lista -->
+
+
 
         </div>
     </section>

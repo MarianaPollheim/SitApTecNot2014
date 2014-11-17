@@ -14,21 +14,21 @@
 	<input type="text" name="nome" value="<?php echo $dados_usuario[0]->nome; ?>"/>
 	<div class="error"><?php echo form_error('nome'); ?></div>
  
-	<label for="email">Email:</label><br/>
+	<label for="email">E-mail:</label><br/>
 	<input type="text" name="email" value="<?php echo $dados_usuario[0]->email; ?>"/>
 	<div class="error"><?php echo form_error('email'); ?></div>
  
 	<label for="senha">Senha:</label><br/>
-        <input type="password" name="senha" value="<?php echo $dados_usuario[0]->senha; ?>"/>
+	<input type="password" name="senha" value="<?php echo $dados_usuario[0]->senha; ?>"/>
 	<div class="error"><?php echo form_error('senha'); ?></div>
  
-	<label for="dtnascimento">Data Nascimento:</label><br/>
+	<label for="dtnascimento">Data de Nacimento:</label><br/>
 	<input type="text" name="dtnascimento" value="<?php echo $dados_usuario[0]->dtNascimento; ?>"/>
 	<div class="error"><?php echo form_error('dtnascimento'); ?></div>
  
 	<label for="foto">Foto:</label><br/>
 	<input type="text" name="foto" value="<?php echo $dados_usuario[0]->foto; ?>"/>
-	<div class="error"><?php echo form_error('foto'); ?></div>
+	<div class="error"><?php echo form_error('email'); ?></div>
  
 	<label for="cidade">Cidade:</label><br/>
 	<input type="text" name="cidade" value="<?php echo $dados_usuario[0]->cidade; ?>"/>
@@ -58,7 +58,6 @@
 	<input type="text" name="celular" value="<?php echo $dados_usuario[0]->celular; ?>"/>
 	<div class="error"><?php echo form_error('celular'); ?></div>
  
-        
 	<input type="submit" name="atualizar" value="Atualizar" />
  
 	<?php echo form_close(); ?>

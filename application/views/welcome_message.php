@@ -3,7 +3,6 @@
 <head>
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
-<h1>Alo Ha Senai</h1>
 
 	<style type="text/css">
 
@@ -69,6 +68,7 @@
 
 <div id="container">
 	<h1>Welcome to CodeIgniter!</h1>
+        <h2>Alo Ha SENAI</h2>
 
 	<div id="body">
 		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
