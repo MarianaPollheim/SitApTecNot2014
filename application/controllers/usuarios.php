@@ -23,7 +23,7 @@ class Usuarios extends CI_Controller {
          */
         //$this->load->view('usuarios_view.php', $data);
         $this->load->view('home-header');
-        $this->load->view('home',$data);
+        $this->load->view('home', $data);
         $this->load->view('home-footer');
     }
 
@@ -68,7 +68,7 @@ class Usuarios extends CI_Controller {
             //Datas
             $data['dtcriacao'] = date('Y-m-d H:i:s');
             $data['dtnascimento'] = $this
-             ->converterDataParaMySql($data['dtnascimento']);
+                    ->converterDataParaMySql($data['dtnascimento']);
 
             /* Chama a função inserir do modelo */
             if ($this->usuarios_model->inserir($data)) {
@@ -88,8 +88,7 @@ class Usuarios extends CI_Controller {
         $data['dados_usuario'] = $this->usuarios_model->editar($id);
 
         //Convertendo a data para o padrão brasileiro
-        $data['dados_usuario'][0]->dtNascimento = 
-        $this->converteDataParaPadraoBrasileiro($data['dados_usuario'][0]->dtNascimento);
+        $data['dados_usuario'][0]->dtNascimento = $this->converteDataParaPadraoBrasileiro($data['dados_usuario'][0]->dtNascimento);
 
         /**
          * debug is on the table
@@ -151,13 +150,13 @@ class Usuarios extends CI_Controller {
             $data['cep'] = $this->input->post('cep');
             $data['telefone'] = $this->input->post('telefone');
             $data['celular'] = $this->input->post('celular');
-            
+
             //Pegando a data de atualização
             $data['dtatualizacao'] = date('Y-m-d H:i:s');
-            
+
             //Convertendo a data para MySQL
             $data['dtnascimento'] = $this
-             ->converterDataParaMySql($data['dtnascimento']);
+                    ->converterDataParaMySql($data['dtnascimento']);
 
             /* Executa a função atualizar do modelo passando como parâmetro os dados obtidos do formulário */
             if ($this->usuarios_model->atualizar($data)) {
@@ -206,6 +205,65 @@ class Usuarios extends CI_Controller {
         $data = array_reverse($data);
         $dataBrasileira = implode('/', $data);
         return $dataBrasileira;
+    }
+
+    function login() {
+        //This method will have the credentials validation
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('loginEmail', 'E-mail', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('loginSenha', 'Senha', 'trim|required|xss_clean|callback_check_database');
+
+         $data['usuarios'] = $this->usuarios_model->listar();
+        if ($this->form_validation->run() == FALSE) {
+            //Field validation failed.  User redirected to login page
+            //$this->load->view('login_view');
+           
+            /**
+             * Carrega a view
+             */
+            //$this->load->view('usuarios_view.php', $data);
+            $this->load->view('home-header');
+            $this->load->view('home', $data);
+            $this->load->view('home-footer');
+        } else {
+            //Go to private area
+            // echo "Funcionou!";die();
+             $session_data = $this->session->userdata('logged_in');
+            $data['nome'] = $session_data['nome'];
+            $data['email'] = $session_data['email'];
+            $data['foto'] = $session_data['foto'];
+            
+            $this->load->view('home-header');
+            $this->load->view('home', $data);
+            $this->load->view('home-footer');
+            
+        }
+    }
+
+    function check_database($loginSenha) {
+        //Field validation succeeded.  Validate against database
+        $loginEmail = $this->input->post('email');
+
+        //query the database
+        $result = $this->usuarios_model->login($loginEmail, $loginSenha);
+
+        if ($result) {
+            $sess_array = array();
+            foreach ($result as $row) {
+                $sess_array = array(
+                    'idusuario' => $row->idusuario,
+                    'nome' => $row->nome,
+                    'email' => $row-> email,
+                    'foto' => $row-> foto
+                );
+                $this->session->set_userdata('logged_in', $sess_array);
+            }
+            return TRUE;
+        } else {
+            $this->form_validation->set_message('check_database', 'E-mail ou senha inválidos');
+            return false;
+        }
     }
 
 }

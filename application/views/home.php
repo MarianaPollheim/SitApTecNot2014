@@ -111,6 +111,8 @@
 
         </div>
     </section>
+    
+    
     <!-- Cadastro -->
     <section id="cadastro" class="four">
         <div class="container">
@@ -186,6 +188,8 @@
                     </div>
                 </div>
 
+            
+            
 
             <?php echo form_close(); ?>
 
@@ -229,6 +233,40 @@
             <!-- Fim Lista -->
 
 
+
+        </div>
+    </section>
+     <!-- http://www.iluv2code.com/login-with-codeigniter-php.html-->
+    
+    <!-- Login -->
+    <section id="login" class="four">
+        <div class="container">
+
+            <header>
+                <h2>Login</h2>
+            </header>
+
+            <?php echo form_open('usuarios/login', 'id="form-usuarios"'); ?>
+
+            <div class="row half">
+                <div class="6u"><input type="text" name="loginEmail" placeholder="Email"/>
+                    <div class="error"><?php echo form_error('email'); ?></div></div>
+
+                <div class="6u"><input type="password" name="loginSenha" placeholder="Senha"/>
+                    <div class="error"><?php echo form_error('senha'); ?></div></div>
+            </div>
+
+            <div class="row">
+                    <div class="12u">
+                        <input type="submit" name="logar" value="Login"/>
+                    </div>
+                </div>
+
+            <?php echo form_close(); ?>
+
+            <!-- Lista as Pessoas Cadastradas -->
+            <br />
+            <div class="row">
 
         </div>
     </section>

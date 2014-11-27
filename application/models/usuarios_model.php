@@ -35,6 +35,28 @@ class Usuarios_model extends CI_Model {
         return $this->db->delete('usuario');
     }
 
+    //Modelo para o sistema de login tirada do site abaixo.
+        //http://www.iluv2code.com/login-with-codeigniter-php.html
+    function login($email, $senha)
+ {
+   $this -> db -> select('idusuario, nome, email, foto');
+   $this -> db -> from('usuario');
+   $this -> db -> where('email', $email);
+   $this -> db -> where('senha', $senha);
+   $this -> db -> limit(1);
+ 
+   $query = $this -> db -> get();
+ 
+   if($query -> num_rows() == 1)
+   {
+     return $query->result();
+   }
+   else
+   {
+     return false;
+   }
+ }
+
 }
 
 /* End of file usuarios_model.php */
