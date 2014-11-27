@@ -24,10 +24,13 @@
         <div class="container">
 
             <header>
-                <h2>Notícias</h2>
+                <h2>Portfolio</h2>
             </header>
 
-            <p></p>
+            <p>Vitae natoque dictum etiam semper magnis enim feugiat convallis convallis
+                egestas rhoncus ridiculus in quis risus amet curabitur tempor orci penatibus.
+                Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis 
+                fusce hendrerit lacus ridiculus.</p>
 
             <div class="row">
                 <div class="4u">

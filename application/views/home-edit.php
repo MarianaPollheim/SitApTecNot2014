@@ -31,8 +31,8 @@
 
             <div class="row half">
                 <div class="12u">
-          <input type="text" name="foto" placeholder="Foto" value="<?php echo $dados_usuario[0]->foto; ?>"/>
-                    <div class="error"><?php echo form_error('foto'); ?></div> 
+                    <input type="text" name="foto" placeholder="Foto" value="<?php echo $dados_usuario[0]->foto; ?>"/>
+                    <div class="error"><?php echo form_error('foto'); ?></div>
                 </div>
             </div>
 
