@@ -214,11 +214,12 @@ class Usuarios extends CI_Controller {
         $this->form_validation->set_rules('loginEmail', 'E-mail', 'trim|required|xss_clean');
         $this->form_validation->set_rules('loginSenha', 'Senha', 'trim|required|xss_clean|callback_check_database');
 
-         $data['usuarios'] = $this->usuarios_model->listar();
+        $data['usuarios'] = $this->usuarios_model->listar();
+
         if ($this->form_validation->run() == FALSE) {
             //Field validation failed.  User redirected to login page
             //$this->load->view('login_view');
-           
+
             /**
              * Carrega a view
              */
@@ -228,22 +229,22 @@ class Usuarios extends CI_Controller {
             $this->load->view('home-footer');
         } else {
             //Go to private area
-            // echo "Funcionou!";die();
-             $session_data = $this->session->userdata('logged_in');
+            //TODO
+            echo "Funcionou! <br>";
+            $session_data = $this->session->userdata('logged_in');
             $data['nome'] = $session_data['nome'];
             $data['email'] = $session_data['email'];
             $data['foto'] = $session_data['foto'];
-            
-            $this->load->view('home-header');
-            $this->load->view('home', $data);
+
+            $this->load->view('home-header', $data);
+            $this->load->view('home');
             $this->load->view('home-footer');
-            
         }
     }
 
     function check_database($loginSenha) {
         //Field validation succeeded.  Validate against database
-        $loginEmail = $this->input->post('email');
+        $loginEmail = $this->input->post('loginEmail');
 
         //query the database
         $result = $this->usuarios_model->login($loginEmail, $loginSenha);
@@ -254,8 +255,8 @@ class Usuarios extends CI_Controller {
                 $sess_array = array(
                     'idusuario' => $row->idusuario,
                     'nome' => $row->nome,
-                    'email' => $row-> email,
-                    'foto' => $row-> foto
+                    'email' => $row->email,
+                    'foto' => $row->foto
                 );
                 $this->session->set_userdata('logged_in', $sess_array);
             }
@@ -264,6 +265,12 @@ class Usuarios extends CI_Controller {
             $this->form_validation->set_message('check_database', 'E-mail ou senha inválidos');
             return false;
         }
+    }
+
+    function logout() {
+        $this->session->unset_userdata('logged_in');
+        session_destroy();
+        redirect('usuarios', 'refresh');
     }
 
 }
