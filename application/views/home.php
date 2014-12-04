@@ -20,96 +20,37 @@
     </section>
 
     <!-- Portfolio -->
-    <section id="portfolio" class="two">
+    <section id="portfolio" class="four">
         <div class="container">
 
             <header>
-                <h2>Portfolio</h2>
+                <h2>Noticia</h2>
             </header>
 
-            <p>Vitae natoque dictum etiam semper magnis enim feugiat convallis convallis
-                egestas rhoncus ridiculus in quis risus amet curabitur tempor orci penatibus.
-                Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis 
-                fusce hendrerit lacus ridiculus.</p>
+          
 
-            <div class="row">
-                <div class="4u">
-                    <article class="item">
-                        <a href="#" class="image fit"><img src="<?php echo base_url('assets/images/pic02.jpg'); ?>" alt="" /></a>
-                        <header>
-                            <h3>Ipsum Feugiat</h3>
-                        </header>
-                    </article>
-                    <article class="item">
-                        <a href="#" class="image fit"><img src="<?php echo base_url('assets/images/pic03.jpg'); ?>" alt="" /></a>
-                        <header>
-                            <h3>Rhoncus Semper</h3>
-                        </header>                        
-                    </article>
-                </div>
-                <div class="4u">
-                    <article class="item">
-                        <a href="#" class="image fit"><img src="<?php echo base_url('assets/images/pic04.jpg'); ?>" alt="" /></a>
-                        <header>
-                            <h3>Magna Nullam</h3>
-                        </header>
-                    </article>
-                    <article class="item">
-                        <a href="#" class="image fit"><img src="<?php echo base_url('assets/images/pic05.jpg'); ?>" alt="" /></a>
-                        <header>
-                            <h3>Natoque Vitae</h3>
-                        </header>
-                    </article>
-                </div>
-                <div class="4u">
-                    <article class="item">
-                        <a href="#" class="image fit"><img src="<?php echo base_url('assets/images/pic06.jpg'); ?>" alt="" /></a>
-                        <header>
-                            <h3>Dolor Penatibus</h3>
-                        </header>
-                    </article>
-                    <article class="item">
-                        <a href="#" class="image fit"><img src="<?php echo base_url('assets/images/pic07.jpg'); ?>" alt="" /></a>
-                        <header>
-                            <h3>Orci Convallis</h3>
-                        </header>
-                    </article>
-                </div>
+            <?php echo form_open('noticia/inserir', 'id="form-noticia"'); ?>
+
+            <div class="row half">
+                <div class="12u"><input type="text" name="titulo" placeholder="Titulo"/>
+                    <div class="error"><?php echo form_error('titulo'); ?></div></div>
+
+                <div class="12u"><input type="text" name="texto" placeholder="Texto"/>
+                    <div class="error"><?php echo form_error('texto'); ?></div></div>
             </div>
 
-        </div>
-    </section>
-    <!-- Contact -->
-    <section id="contact" class="four">
-        <div class="container">
+            
 
-            <header>
-                <h2>Contact</h2>
-            </header>
-
-            <p>Elementum sem parturient nulla quam placerat viverra 
-                mauris non cum elit tempus ullamcorper dolor. Libero rutrum ut lacinia 
-                donec curae mus. Eleifend id porttitor ac ultricies lobortis sem nunc 
-                orci ridiculus faucibus a consectetur. Porttitor curae mauris urna mi dolor.</p>
-
-            <form method="post" action="#">
-                <div class="row half">
-                    <div class="6u"><input type="text" name="name" placeholder="Name" /></div>
-                    <div class="6u"><input type="text" name="email" placeholder="Email" /></div>
-                </div>
-                <div class="row half">
+            <div class="row">
                     <div class="12u">
-                        <textarea name="message" placeholder="Message"></textarea>
+                        <input type="submit" name="adicionar" value="Adicionar"/>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="12u">
-                        <input type="submit" value="Send Message" />
-                    </div>
-                </div>
-            </form>
 
-        </div>
+
+            <?php echo form_close(); ?>
+
+            
     </section>
     <!-- Cadastro -->
     <section id="cadastro" class="four">
